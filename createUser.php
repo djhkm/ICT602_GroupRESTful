@@ -12,8 +12,8 @@ if (isset($_POST['username']) && isset($_POST['password']) ){
         die("Please fill in the form");
     }
 
-
     $result = $conn->query("INSERT INTO User (UserID, Username, Password, UserTypeID) VALUES (null, '$username', '$password', null)");
+
     if (!$result) {
         echo $conn->error;
     }
