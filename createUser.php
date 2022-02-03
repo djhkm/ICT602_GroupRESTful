@@ -2,7 +2,7 @@
 $conn = "";
 require_once 'db.php';
 
-if (isset($_POST['username']) && isset($_POST['password']) ){
+if (isset($_POST['username']) && isset($_POST['password'])) {
 
     $filteredPost = filter_input_array(INPUT_POST, ['username' => FILTER_SANITIZE_STRING, 'password' => FILTER_SANITIZE_STRING]);
     $username = $filteredPost['username'];
@@ -16,6 +16,7 @@ if (isset($_POST['username']) && isset($_POST['password']) ){
 
     if (!$result) {
         echo $conn->error;
+        echo "Some stupid error";
     }
     else {
         echo "'$username' successfully registered";

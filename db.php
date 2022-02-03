@@ -1,3 +1,3 @@
 <?php
-$conn = new mysqli("localhost",'1140362','FreeAccount12','1140362');
+$conn = new mysqli('localhost','1140362','FreePassword12','1140362');
 ?>
