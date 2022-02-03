@@ -16,7 +16,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 
     if (!$result) {
         echo $conn->error;
-        echo "Some stupid error";
     }
     else {
         echo "'$username' successfully registered";
