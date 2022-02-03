@@ -12,16 +12,24 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
         die("Please fill in the form");
     }
 
-    $result = $conn->query("INSERT INTO User (UserID, Username, Password, UserTypeID) VALUES (null, '$username', '$password', null)");
+    $checkExisting = $conn->query("SELECT UserID FROM User WHERE Username = '$username'");
 
-    if (!$result) {
-        echo $conn->error;
+    if ($checkExisting->num_rows == 0) {
+        $result = $conn->query("INSERT INTO User (UserID, Username, Password, UserTypeID) VALUES (null, '$username', '$password', null)");
+
+        if (!$result) {
+            echo $conn->error;
+        }
+        else {
+            echo "success";
+        }
     }
     else {
-        echo "success";
+        echo "Username already existed";
     }
 }
 else {
-    die("Incomplete HTTP request");
+    echo "Incomplete HTTP request";
 }
+$conn->close();
 ?>
