@@ -3,17 +3,17 @@
 
 	$filteredPOST = filter_input_array(INPUT_POST,
 		[
-			'lat' => FILTER_SANITIZE_NUMBER_FLOAT,
-			'lon' => FILTER_SANITIZE_NUMBER_FLOAT,
 			'hazardID' => FILTER_SANITIZE_NUMBER_INT,
 			'userID' => FILTER_SANITIZE_NUMBER_INT,
 			'dateTime' => FILTER_SANITIZE_STRING
 		]
 	);
 	
-	//$ = $filteredPOST[''];
-	$lat = $filteredPOST['lat'];
-	$lon = $filteredPOST['lon'];
+	$lat = filter_input(INPUT_POST, 'lat', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+	$lon = filter_input(INPUT_POST, 'lon', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+	
+	//$ = $filteredPOST[''] ;
 	$hazardID = $filteredPOST['hazardID'];
 	$userID = $filteredPOST['userID'];
 	$dateTime = $filteredPOST['dateTime'];

@@ -1,7 +1,7 @@
 <?php
 	require_once 'db.php';
 
-	$query = "SELECT B.Type AS 'Hazard', time_Stamp AS 'Time', Latitude, Longitude, Username AS 'Reported By' 
+	$query = "SELECT ReportID, B.Type AS 'Hazard', time_Stamp AS 'Time', Latitude, Longitude, Username AS 'Reported By', C.UserID 
 				FROM Report A 
 				INNER JOIN Hazard B ON A.HazardID = B.HazardID 
 				INNER JOIN User C ON A.UserID = C.UserID";
