@@ -15,7 +15,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
     $checkExisting = $conn->query("SELECT UserID FROM User WHERE Username = '$username'");
 
     if ($checkExisting->num_rows == 0) {
-        $result = $conn->query("INSERT INTO User (UserID, Username, Password, UserTypeID) VALUES (null, '$username', '$password', null)");
+
+        $result = $conn->query("INSERT INTO User (UserID, Username, Password, UserTypeID) VALUES (null, '$username', '$password', 2)");
 
         if (!$result) {
             echo $conn->error;
