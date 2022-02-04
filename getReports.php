@@ -16,6 +16,6 @@
 		$status = array("Message" => $msg);
 		
 		echo json_encode($status); //To use in Toast
-		die($msg);
+		die();
 	}
 ?>
