@@ -12,25 +12,20 @@
 	);
 	
 	//$ = $filteredPOST[''];
-	$userType = $filteredPOST['userType'];
 	$lat = $filteredPOST['lat'];
 	$lon = $filteredPOST['lon'];
 	$hazardID = $filteredPOST['hazardID'];
 	$userID = $filteredPOST['userID'];
 	$dateTime = $filteredPOST['dateTime'];
+
+	$query = "INSERT INTO Report(HazardID, UserID, time_Stamp, Latitude, Longitude) 
+				VALUES('$hazardID', '$userID', '$dateTime', '$lat', '$lon');";
+				
+	$result = mysqli_query($conn, $query);
 	
-	if(isset($userType)){
-		$query = "INSERT INTO Report(HazardID, UserID, time_Stamp, Latitude, Longitude)
-					VALUES($hazardID, $userID, $dateTime, $lat, $lon);";
-					
-		$result = mysqli_query($conn, $query);
-		
-		if($result){
-			echo mysqli_error($conn);
-		}else{
-			echo "Report successfully submitted.";
-		}
+	if($result){
+		echo "Report successfully submitted.";
 	}else{
-		die("Please login.");
+		echo mysqli_error($conn);
 	}
 ?>
