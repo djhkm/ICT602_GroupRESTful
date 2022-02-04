@@ -24,8 +24,11 @@
 	$result = mysqli_query($conn, $query);
 	
 	if($result){
-		echo "Report successfully submitted.";
+		$msg =  "Report successfully submitted.";
 	}else{
-		echo mysqli_error($conn);
+		$msg = "An error occurred while inserting data.\n" . mysqli_error($conn); 
 	}
+	$status = array("Message" => $msg);
+	echo json_encode($status); //To use in Toast
+	die($msg);
 ?>

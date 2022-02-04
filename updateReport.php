@@ -19,29 +19,26 @@
 	$reportID = $filteredPOST['reportID'];
 	$hazardID = $filteredPOST['hazardID'];
 	$userID = $filteredPOST['userID'];
-	$dateTime = $filteredPOST['dateTime'];
 	
-	if(isset($userType)){
-		if(isset($lat) && isset($lon) && isset($hazardID) && isset($userID) && isset($dateTime) && isset($reportID)){
-			$query = "UPDATE Report SET
-						HazardID = $hazardID, 
-						time_Stamp = $dateTime,
-						Latitude = $lat,
-						Longitude = $lon
-					  WHERE ReportID = $reportID";
-						
-			$result = mysqli_query($conn, $query);
-			
-			if($result){
-				echo mysqli_error($conn);
-			}else{
-				echo "Report successfully updated.";
-			}
+	if(isset($lat) && isset($lon) && isset($hazardID) && isset($userID) && isset($dateTime) && isset($reportID)){
+		$query = "UPDATE Report SET 
+					HazardID = '$hazardID', 
+					Latitude = '$lat', 
+					Longitude = '$lon' 
+				  WHERE ReportID = '$reportID'";
+					
+		$result = mysqli_query($conn, $query);
 		
+		if(mysqli_affected_rows($conn) < 1){
+			$msg = "An error occurred while deleting data.\n" . mysqli_error($conn);
 		}else{
-			die('Please input data');
+			$msg = "Report successfully updated.";
 		}
 	}else{
-		die("Please login.");
+		$msg = "Please input data.";
 	}
+	
+	$status = array("Message" => $msg);
+	echo json_encode($status); //To use in Toast
+	die($msg);
 ?>

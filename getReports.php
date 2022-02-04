@@ -11,7 +11,11 @@
 			$rows[] = $row;
 		}
 		echo json_encode($rows);
-	}else{
-		die("An error occurred while fetching data.<br>" . mysqli_error($conn));
+	}else{		
+		$msg = "An error occurred while fetching data.\n" . mysqli_error($conn); 
+		$status = array("Message" => $msg);
+		
+		echo json_encode($status); //To use in Toast
+		die($msg);
 	}
 ?>
