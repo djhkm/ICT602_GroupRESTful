@@ -4,7 +4,8 @@
 	$query = "SELECT ReportID, B.Type AS 'Hazard', time_Stamp AS 'Time', Latitude, Longitude, Username AS 'Reported By', C.UserID 
 				FROM Report A 
 				INNER JOIN Hazard B ON A.HazardID = B.HazardID 
-				INNER JOIN User C ON A.UserID = C.UserID";
+				INNER JOIN User C ON A.UserID = C.UserID
+				ORDER BY time_Stamp DESC";
 	$result = mysqli_query($conn, $query);
 	if($result){
 		while($row = mysqli_fetch_assoc($result)){
